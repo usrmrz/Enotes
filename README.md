@@ -15,7 +15,6 @@ https://d.android.com/r/studio-ui/compose-compiler<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alias(libs.plugins.compose.compiler)<br>
 
 Dagger-Hilt<br>
-https://developer.android.com/training/dependency-injection/hilt-android<br>
 
 &nbsp;1.  In your libs.versions.toml file, in the plugins section, add the following new dependency<br>
 &nbsp;&nbsp;[versions]<br>
@@ -55,12 +54,23 @@ https://developer.android.com/training/dependency-injection/hilt-android<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kapt(libs.androidx.hilt.compiler)<br>
 
 Compose Dependency<br>
+
 &nbsp;1.  In your libs.versions.toml file, in the plugins section, add the following new dependency<br>
 &nbsp;&nbsp;[versions]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lifecycleViewmodelCompose = "2.8.5"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;navigationCompose = "2.8.0"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;materialIconsExtended = "1.7.1"<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hiltNavigationCompose = "1.2.0"<br>
 
 &nbsp;&nbsp;[libraries]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;androidx-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "materialIconsExtended" }<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }<br>
 
+&nbsp;2.  Add the hilt-android-gradle-plugin plugin to your app/build.gradle.kts file:<br>
 &nbsp;dependencies {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;implementation(libs.lifecycle.viewmodel.compose)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;implementation(libs.androidx.navigation.compose)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;implementation(libs.androidx.material.icons.extended)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;implementation(libs.androidx.hilt.navigation.compose)<br>
