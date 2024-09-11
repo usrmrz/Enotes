@@ -83,6 +83,7 @@ dependencies {
     //Compose Dependency
     implementation(libs.lifecycle.viewmodel.compose)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.hilt.navigation.compose)
     //Dagger-Hilt
     implementation(libs.hilt.android)
