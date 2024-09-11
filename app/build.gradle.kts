@@ -82,6 +82,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     //Compose Dependency
     implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.hilt.navigation.compose)
     //Dagger-Hilt
     implementation(libs.hilt.android)
