@@ -1,8 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-
+    //Compose Compiler Gradle plugin
     alias(libs.plugins.compose.compiler)
+    //Dagger-Hilt
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
 }
@@ -52,6 +53,10 @@ android {
         }
     }
 
+    hilt {
+        enableAggregatingTask = true
+    }
+
     kapt {
         correctErrorTypes = true
     }
@@ -74,7 +79,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
+    //Dagger-Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
 }

@@ -27,10 +27,15 @@ https://developer.android.com/training/dependency-injection/hilt-android
 &nbsp;2.  Add the hilt-android-gradle-plugin plugin to your project's root build.gradle.kts file:
 &nbsp;&nbsp;plugins {
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id("com.google.dagger.hilt.android") version "2.52" apply false
-&nbsp;3.  Then, apply the Gradle plugin and add these dependencies in your app/build.gradle.kts file:
+&nbsp;3.  Then add these dependencies in your app/build.gradle.kts file:
 &nbsp;&nbsp;plugins {
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id("kotlin-kapt")  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id("com.google.dagger.hilt.android")
+
+&nbsp;&nbsp;// Allow references to generated code
+&nbsp;&nbsp;hilt  {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enableAggregatingTask = true
+&nbsp;&nbsp;}
 
 &nbsp;&nbsp;// Allow references to generated code
 &nbsp;&nbsp;kapt  {
@@ -40,3 +45,8 @@ https://developer.android.com/training/dependency-injection/hilt-android
 &nbsp;dependencies {
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;implementation(libs.hilt.android)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kapt(libs.hilt.android.compiler)
+
+
+hilt {
+enableAggregatingTask = true
+}
