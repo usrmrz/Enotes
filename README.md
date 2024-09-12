@@ -94,3 +94,20 @@ Coroutines<br>
 &nbsp;dependencies {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;implementation(libs.kotlinx.coroutines.core)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;implementation(libs.kotlinx.coroutines.android)<br>
+
+Room<br>
+&nbsp;1.  In your libs.versions.toml file, in the versions and libraries sections, add the following new lines<br>
+&nbsp;&nbsp;[versions]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;room = "2.6.1"<br>
+
+&nbsp;&nbsp;[libraries]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }<br>
+
+&nbsp;2.  In app/build.gradle.kts file apply the plugins. The comment is required:<br>
+&nbsp;dependencies {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;implementation(libs.androidx.room.runtime)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//noinspection KaptUsageInsteadOfKsp<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kapt(libs.androidx.room.compiler)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;implementation(libs.androidx.room.ktx)<br>
