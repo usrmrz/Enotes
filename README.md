@@ -1,3 +1,8 @@
+Relevant for September 2024
+Android Studio Koala Feature Drop | 2024.1.2
+Build #AI-241.18034.62.2412.12266719, built on August 23, 2024
+Runtime version: 17.0.11+0--11852314 amd64
+VM: OpenJDK 64-Bit Server VM by JetBrains s.r.o.
 
 Starting in Kotlin 2.0, the Compose Compiler Gradle plugin is required
 when compose is enabled. See the following link for more information:<br>
@@ -32,17 +37,17 @@ Dagger-Hilt<br>
 &nbsp;2.  Add the hilt-android-gradle-plugin plugin to your project's root build.gradle.kts file:<br>
 &nbsp;&nbsp;plugins {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id("com.google.dagger.hilt.android") version "2.52" apply false<br>
+
 &nbsp;3.  Then add these dependencies in your app/build.gradle.kts file:<br>
 &nbsp;&nbsp;plugins {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id("kotlin-kapt")<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id("com.google.dagger.hilt.android")<br>
 
-&nbsp;&nbsp;// Allow references to generated code<br>
+&nbsp;&nbsp;//Allow references to generated code<br>
 &nbsp;&nbsp;hilt  {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enableAggregatingTask = true<br>
 &nbsp;&nbsp;}<br>
 
-&nbsp;&nbsp;// Allow references to generated code<br>
 &nbsp;&nbsp;kapt  {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;correctErrorTypes = true<br>
 &nbsp;&nbsp;}<br>
@@ -68,9 +73,24 @@ Compose Dependency<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;androidx-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "materialIconsExtended" }<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }<br>
 
-&nbsp;2.  Add the hilt-android-gradle-plugin plugin to your app/build.gradle.kts file:<br>
+&nbsp;2.  Add this dependencies to your app/build.gradle.kts file:<br>
 &nbsp;dependencies {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;implementation(libs.lifecycle.viewmodel.compose)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;implementation(libs.androidx.navigation.compose)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;implementation(libs.androidx.material.icons.extended)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;implementation(libs.androidx.hilt.navigation.compose)<br>
+
+Coroutines<br>
+
+&nbsp;1.  In your libs.versions.toml file, in the versions and libraries sections, add the following new lines<br>
+&nbsp;&nbsp;[versions]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kotlinx-coroutines = "1.9.0-RC.2"<br>
+
+&nbsp;&nbsp;[libraries]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }<br>
+
+&nbsp;2.  In app/build.gradle.kts file apply the plugins:<br>
+&nbsp;dependencies {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;implementation(libs.kotlinx.coroutines.core)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;implementation(libs.kotlinx.coroutines.android)<br>
