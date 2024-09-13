@@ -1,4 +1,4 @@
-package dev.usrmrz.enotes
+package dev.usrmrz.enotes.feature_note.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
