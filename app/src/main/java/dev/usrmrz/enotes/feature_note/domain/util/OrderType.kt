@@ -1,6 +1,6 @@
 package dev.usrmrz.enotes.feature_note.domain.util
 
 sealed class OrderType {
-    object Ascending: OrderType()
-    object Descending: OrderType()
+    data object Ascending: OrderType()
+    data object Descending: OrderType()
 }
