@@ -4,6 +4,7 @@ package dev.usrmrz.enotes.feature_note.data.data_sourse
 import androidx.room.Database
 //import androidx.room.Room
 import androidx.room.RoomDatabase
+import dev.usrmrz.enotes.NoteApp
 import dev.usrmrz.enotes.feature_note.domain.model.Note
 
 @Database(
@@ -14,13 +15,7 @@ abstract class NoteDatabase : RoomDatabase() {
 
     abstract val noteDao: NoteDao
 
-//    companion object{
-//        fun createNoteDatabase(context: Context): NoteDatabase {
-//            return Room.databaseBuilder(
-//                context,
-//                NoteDatabase::class.java,
-//                "note.db"
-//            ).build()
-//        }
-//    }
+    companion object {
+        const val DATABASE_NAME = "notes_db"
+    }
 }
