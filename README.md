@@ -31,7 +31,6 @@ Dagger-Hilt<br>
 &nbsp;&nbsp;[libraries]<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;androidx-hilt-lifecycle-viewmodel = { group = "androidx.hilt", name = "hilt-lifecycle-viewmodel", version.ref = "hiltLifecycleViewmodel" }<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;androidx-hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltCompiler" }<br>
 
 &nbsp;2.  Add the hilt-android-gradle-plugin plugin to your project's root build.gradle.kts file:<br>
