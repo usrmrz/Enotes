@@ -41,7 +41,6 @@ fun OrderSection(
                 selected = noteOrder is NoteOrder.Color,
                 onSelect = { onOrderChange(NoteOrder.Color(noteOrder.orderType)) }
             )
-
         }
         Spacer(modifier = Modifier.height(16.dp))
         Row(
@@ -63,7 +62,5 @@ fun OrderSection(
                 }
             )
         }
-
     }
-
 }
