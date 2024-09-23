@@ -126,14 +126,13 @@ fun NotesScreen(
                             .clickable {
                                 navController.navigate(
                                     Screen.AddEditNotesScreen.route +
-                                    //"?noteId=${note.id}&noteColor=${note.color}"
-                                    "?noteId={note.id}&noteColor={note.color}"
+                                    "?noteId=${note.id}&noteColor=${note.color}"
                                 )
                             },
                         onDeleteClick = {
                             viewModel.onEvent(NotesEvent.DeleteNote(note))
                             scope.launch {
-                                val result = snackbarHostState.showSnackBar(
+                                val result = snackbarHostState.showSnackbar(
                                     message = "Note deleted",
                                     actionLabel = "Undo"
                                 )
