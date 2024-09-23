@@ -52,7 +52,11 @@ class AddEditNoteViewModel @Inject constructor(
                 viewModelScope.launch {
                     noteUseCases.getNote(noteId)?.also { note ->
                         currentNoteId = note.id
+                        //update the value of title
                         _noteTitle.value = noteTitle.value.copy(
+                            //because now title value copy. because now the note is loaded
+                            //and we want to take the title of note from database and put it in the
+                            //actual text field in state.
                             text = note.title,
                             isHintVisible = false
                         )

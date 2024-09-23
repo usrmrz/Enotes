@@ -15,18 +15,26 @@ import dev.usrmrz.enotes.feature_note.domain.util.OrderType
 @Composable
 fun OrderSection(
     modifier: Modifier = Modifier,
+    //that will decide which radio buttons are actually checked. By default is by data descending
     noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending),
+    //when the order changes we pass the new NoteOrder as a callback function to the parent
+    //composable
     onOrderChange: (NoteOrder) -> Unit
 ) {
+    //for this order section there is column of two rows
     Column(
         modifier = modifier
     ) {
+        //first row contains three radio buttons
         Row(
             modifier = Modifier.fillMaxWidth()
         ) {
             DefaultRadioButton(
                 text = "Title",
+                //will be true if selected that means ordered by title
                 selected = noteOrder is NoteOrder.Title,
+                //when click on radio button, callback onOrderChange function will be triggered with
+                //the new NoteOrder
                 onSelect = { onOrderChange(NoteOrder.Title(noteOrder.orderType)) }
             )
             Spacer(modifier = Modifier.width(8.dp))
@@ -43,6 +51,7 @@ fun OrderSection(
             )
         }
         Spacer(modifier = Modifier.height(16.dp))
+        //second row contains two radio buttons
         Row(
             modifier = Modifier.fillMaxWidth()
         ) {
