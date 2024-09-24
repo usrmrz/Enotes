@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.usrmrz.enotes.feature_note.domain.model.InvalidNoteException
 import dev.usrmrz.enotes.feature_note.domain.model.Note
 import dev.usrmrz.enotes.feature_note.domain.use_case.NoteUseCases
@@ -15,6 +16,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class AddEditNoteViewModel @Inject constructor(
     private val noteUseCases: NoteUseCases,
     savedStateHandle: SavedStateHandle
@@ -60,7 +62,7 @@ class AddEditNoteViewModel @Inject constructor(
                             text = note.title,
                             isHintVisible = false
                         )
-                        _noteColor.intValue = note.color
+                        _noteColor.value = note.color
                     }
                 }
             }
@@ -98,9 +100,8 @@ class AddEditNoteViewModel @Inject constructor(
             }
 
             is AddEditNoteEvent.ChangeColor -> {
-                _noteColor.intValue = event.color
+                _noteColor.value = event.color
             }
-
             is AddEditNoteEvent.SaveNote -> {
                 viewModelScope.launch {
                     try {

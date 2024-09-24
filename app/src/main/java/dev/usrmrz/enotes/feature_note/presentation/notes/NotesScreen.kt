@@ -1,5 +1,6 @@
 package dev.usrmrz.enotes.feature_note.presentation.notes
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -54,6 +55,7 @@ fun NotesScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
+                    Log.d("FAB", "Navigating to AddEditNoteScreen")
                     navController.navigate(Screen.AddEditNotesScreen.route)
 
                 },
