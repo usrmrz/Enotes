@@ -1,7 +1,9 @@
 package dev.usrmrz.enotes.feature_note.presentation.add_edit_note
 
+import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableIntStateOf
+//import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.toArgb
 import androidx.lifecycle.SavedStateHandle
@@ -36,7 +38,8 @@ class AddEditNoteViewModel @Inject constructor(
     )
     val noteContent: State<NoteTextFieldState> = _noteContent
 
-    private val _noteColor = mutableIntStateOf(
+    @SuppressLint("AutoboxingStateCreation")
+    private val _noteColor = mutableStateOf(
         Note.noteColors.random().toArgb()
     )
     val noteColor: State<Int> = _noteColor
@@ -47,19 +50,21 @@ class AddEditNoteViewModel @Inject constructor(
     private var currentNoteId: Int? = null
 
     init {
+        Log.d("id", "currentNoteId: $currentNoteId note color: $noteColor")
         savedStateHandle.get<Int>(
             "noteId"
         )?.let { noteId ->
+            Log.d("noteId", "noteId = $noteId")
             if (noteId != -1) {
                 viewModelScope.launch {
                     noteUseCases.getNote(noteId)?.also { note ->
                         currentNoteId = note.id
-                        //update the value of title
                         _noteTitle.value = noteTitle.value.copy(
-                            //because now title value copy. because now the note is loaded
-                            //and we want to take the title of note from database and put it in the
-                            //actual text field in state.
                             text = note.title,
+                            isHintVisible = false
+                        )
+                        _noteContent.value = noteContent.value.copy(
+                            text = note.content,
                             isHintVisible = false
                         )
                         _noteColor.value = note.color

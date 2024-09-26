@@ -1,5 +1,6 @@
 package dev.usrmrz.enotes.feature_note.presentation.add_edit_note
 
+import android.util.Log
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Save
 import androidx.compose.material3.FloatingActionButton
@@ -50,7 +52,7 @@ fun AddEditNoteScreen(
 ) {
     val titleState = viewModel.noteTitle.value
     val contentState = viewModel.noteContent.value
-//    val scaffoldState = rememberScaffoldState()
+    Log.d("Content", "title: $titleState content: $contentState $viewModel.noteContent.value")
     val snackbarHostState = remember { SnackbarHostState() }
     val noteBackgroundAnimatable = remember {
         Animatable(
@@ -63,11 +65,11 @@ fun AddEditNoteScreen(
 
     LaunchedEffect(key1 = true) {
         viewModel.eventFlow.collectLatest { event ->
-            when(event) {
+            when (event) {
                 is AddEditNoteViewModel.UiEvent.ShowSnackBar -> {
                     snackbarHostState.showSnackbar(message = event.message)
-//                    scaffoldState.snackbarHostState.showSnackbar(message = event.message)
                 }
+
                 is AddEditNoteViewModel.UiEvent.SaveNote -> {
                     navController.navigateUp()
                 }
@@ -78,15 +80,22 @@ fun AddEditNoteScreen(
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
+//                modifier = Modifier
+//                    .padding(16.dp)
+//                    .shadow(
+//                        elevation = 3.dp,
+//                        shape = RoundedCornerShape(50)
+//                    ),
                 onClick = {
                     viewModel.onEvent(AddEditNoteEvent.SaveNote)
                 },
+                shape = RoundedCornerShape(50),
                 containerColor = MaterialTheme.colorScheme.primary
-//                backgroundColor = MaterialTheme.colorScheme.primary
             ) {
                 Icon(
                     imageVector = Icons.Default.Save,
-                    contentDescription = "Save note"
+                    contentDescription = "Save note",
+                    tint = MaterialTheme.colorScheme.onPrimary
                 )
             }
         },
@@ -95,7 +104,6 @@ fun AddEditNoteScreen(
                 hostState = snackbarHostState
             )
         }
-//        scaffoldState = scaffoldState
     ) { paddingValues ->
         Column(
             modifier = Modifier

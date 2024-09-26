@@ -29,17 +29,26 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = NotesScreen.route) {
+                        startDestination = NotesScreen.route
+                    ) {
                         composable(route = NotesScreen.route) {
                             NotesScreen(navController = navController)
                         }
                         composable(route = Screen.AddEditNotesScreen.route +
-                        "?noteId={noteId}&noteColor={noteColor}",
+                                "?noteId={noteId}&noteColor={noteColor}",
                             arguments = listOf(
-                                navArgument(name = "noteColor") {
+                                navArgument(
+                                    name = "noteId"
+                                ) {
                                     type = NavType.IntType
                                     defaultValue = -1
                                 },
+                                navArgument(
+                                    name = "noteColor"
+                                ) {
+                                    type = NavType.IntType
+                                    defaultValue = -1
+                                }
                             )
                         ) {
                             val color = it.arguments?.getInt("noteColor") ?: -1

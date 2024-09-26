@@ -1,6 +1,5 @@
 package dev.usrmrz.enotes.feature_note.presentation.notes
 
-import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -17,6 +16,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Sort
 import androidx.compose.material.icons.filled.Add
@@ -54,14 +54,17 @@ fun NotesScreen(
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
+//                modifier = Modifier
+//                    .padding(16.dp)
+//                    .shadow(
+//                        elevation = 3.dp,
+//                        shape = RoundedCornerShape(50)
+//                    ),
                 onClick = {
-                    Log.d("FAB", "Navigating to AddEditNoteScreen")
                     navController.navigate(Screen.AddEditNotesScreen.route)
-
                 },
-//                modifier = Modifier.background(Color.White)
-                containerColor  = MaterialTheme.colorScheme.primary
-//                backgroundColor = MaterialTheme.colorScheme.primary
+                shape = RoundedCornerShape(50),
+                containerColor = MaterialTheme.colorScheme.primary
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
@@ -73,7 +76,6 @@ fun NotesScreen(
         snackbarHost = {
             SnackbarHost(hostState = snackbarHostState)
         }
-//        scaffoldState = scaffoldState
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -87,7 +89,7 @@ fun NotesScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Your note",
+                    text = "Your notes app",
                     style = MaterialTheme.typography.headlineLarge
                 )
                 IconButton(
@@ -128,7 +130,7 @@ fun NotesScreen(
                             .clickable {
                                 navController.navigate(
                                     Screen.AddEditNotesScreen.route +
-                                    "?noteId=${note.id}&noteColor=${note.color}"
+                                            "?noteId=${note.id}&noteColor=${note.color}"
                                 )
                             },
                         onDeleteClick = {
