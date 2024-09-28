@@ -4,8 +4,7 @@ plugins {
     //Compose Compiler Gradle plugin
     alias(libs.plugins.compose.compiler)
     //Dagger-Hilt
-    id("kotlin-kapt")
-//    id("com.google.devtools.ksp")
+    id("com.google.devtools.ksp") version "2.0.20-1.0.24"
     id("com.google.dagger.hilt.android")
 }
 
@@ -25,7 +24,6 @@ android {
             useSupportLibrary = true
         }
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -53,9 +51,8 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-
-    hilt {
-        enableAggregatingTask = true
+    sourceSets {
+        getByName("main").java.srcDirs("build/generated/ksp/main/cotlin")
     }
 }
 
@@ -86,16 +83,15 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     //Dagger-Hilt
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
-    kapt(libs.androidx.hilt.compiler)
+    ksp(libs.hilt.android.compiler)
+    ksp(libs.androidx.hilt.compiler)
     //Room
     implementation(libs.androidx.room.runtime)
-    //noinspection KaptUsageInsteadOfKsp
-    kapt(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
     //Kotlin Extensions and Coroutines support for Room
     implementation(libs.androidx.room.ktx)
 }
 
-//kapt {
-//    correctErrorTypes = true
-//}
+hilt {
+    enableAggregatingTask = true
+}

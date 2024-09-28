@@ -3,8 +3,11 @@ package dev.usrmrz.enotes.feature_note.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -23,7 +26,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             EnotesTheme {
                 Surface(
-                    color = MaterialTheme.colorScheme.background
+//                    color = MaterialTheme.colorScheme.onSurface
+                    color = Color.Red,
+                    contentColor = Color.Red,
+                    modifier = Modifier.fillMaxSize()
+
                 ) {
                     val navController = rememberNavController()
                     NavHost(

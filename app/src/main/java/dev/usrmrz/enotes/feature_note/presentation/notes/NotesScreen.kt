@@ -54,12 +54,6 @@ fun NotesScreen(
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
-//                modifier = Modifier
-//                    .padding(16.dp)
-//                    .shadow(
-//                        elevation = 3.dp,
-//                        shape = RoundedCornerShape(50)
-//                    ),
                 onClick = {
                     navController.navigate(Screen.AddEditNoteScreen.route)
                 },
@@ -89,7 +83,7 @@ fun NotesScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Your notes app",
+                    text = "eNotes App",
                     style = MaterialTheme.typography.headlineLarge
                 )
                 IconButton(
