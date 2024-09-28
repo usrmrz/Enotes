@@ -4,6 +4,6 @@ sealed class Screen(
     val route: String
 ) {
     data object NotesScreen: Screen(route = "notes_screen")
-    data object AddEditNotesScreen: Screen(route = "add_edit_note_screen")
+    data object AddEditNoteScreen: Screen(route = "add_edit_note_screen")
 
 }

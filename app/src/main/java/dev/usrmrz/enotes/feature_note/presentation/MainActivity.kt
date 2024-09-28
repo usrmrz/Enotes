@@ -14,7 +14,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.usrmrz.enotes.feature_note.presentation.add_edit_note.AddEditNoteScreen
 import dev.usrmrz.enotes.feature_note.presentation.notes.NotesScreen
 import dev.usrmrz.enotes.feature_note.presentation.util.Screen
-import dev.usrmrz.enotes.feature_note.presentation.util.Screen.NotesScreen
 import dev.usrmrz.enotes.ui.theme.EnotesTheme
 
 @AndroidEntryPoint
@@ -29,12 +28,12 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = NotesScreen.route
+                        startDestination = Screen.NotesScreen.route
                     ) {
-                        composable(route = NotesScreen.route) {
+                        composable(route = Screen.NotesScreen.route) {
                             NotesScreen(navController = navController)
                         }
-                        composable(route = Screen.AddEditNotesScreen.route +
+                        composable(route = Screen.AddEditNoteScreen.route +
                                 "?noteId={noteId}&noteColor={noteColor}",
                             arguments = listOf(
                                 navArgument(

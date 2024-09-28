@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     //Dagger-Hilt
     id("kotlin-kapt")
+//    id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
 }
 
@@ -15,7 +16,7 @@ android {
     defaultConfig {
         applicationId = "dev.usrmrz.enotes"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -56,10 +57,6 @@ android {
     hilt {
         enableAggregatingTask = true
     }
-
-    kapt {
-        correctErrorTypes = true
-    }
 }
 
 dependencies {
@@ -72,7 +69,6 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -91,7 +87,6 @@ dependencies {
     //Dagger-Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
-//    implementation(libs.androidx.hilt.lifecycle.viewmodel)
     kapt(libs.androidx.hilt.compiler)
     //Room
     implementation(libs.androidx.room.runtime)
@@ -100,3 +95,7 @@ dependencies {
     //Kotlin Extensions and Coroutines support for Room
     implementation(libs.androidx.room.ktx)
 }
+
+//kapt {
+//    correctErrorTypes = true
+//}

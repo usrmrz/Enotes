@@ -61,7 +61,7 @@ fun NotesScreen(
 //                        shape = RoundedCornerShape(50)
 //                    ),
                 onClick = {
-                    navController.navigate(Screen.AddEditNotesScreen.route)
+                    navController.navigate(Screen.AddEditNoteScreen.route)
                 },
                 shape = RoundedCornerShape(50),
                 containerColor = MaterialTheme.colorScheme.primary
@@ -129,7 +129,7 @@ fun NotesScreen(
                             .fillMaxWidth()
                             .clickable {
                                 navController.navigate(
-                                    Screen.AddEditNotesScreen.route +
+                                    Screen.AddEditNoteScreen.route +
                                             "?noteId=${note.id}&noteColor=${note.color}"
                                 )
                             },

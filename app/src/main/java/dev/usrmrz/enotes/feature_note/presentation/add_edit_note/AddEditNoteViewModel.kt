@@ -1,9 +1,7 @@
 package dev.usrmrz.enotes.feature_note.presentation.add_edit_note
 
-import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.runtime.State
-//import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.toArgb
 import androidx.lifecycle.SavedStateHandle
@@ -38,8 +36,7 @@ class AddEditNoteViewModel @Inject constructor(
     )
     val noteContent: State<NoteTextFieldState> = _noteContent
 
-    @SuppressLint("AutoboxingStateCreation")
-    private val _noteColor = mutableStateOf(
+    private val _noteColor = mutableIntStateOf(
         Note.noteColors.random().toArgb()
     )
     val noteColor: State<Int> = _noteColor
@@ -50,11 +47,9 @@ class AddEditNoteViewModel @Inject constructor(
     private var currentNoteId: Int? = null
 
     init {
-        Log.d("id", "currentNoteId: $currentNoteId note color: $noteColor")
         savedStateHandle.get<Int>(
             "noteId"
         )?.let { noteId ->
-            Log.d("noteId", "noteId = $noteId")
             if (noteId != -1) {
                 viewModelScope.launch {
                     noteUseCases.getNote(noteId)?.also { note ->
@@ -67,13 +62,12 @@ class AddEditNoteViewModel @Inject constructor(
                             text = note.content,
                             isHintVisible = false
                         )
-                        _noteColor.value = note.color
+                        _noteColor.intValue = note.color
                     }
                 }
             }
         }
     }
-
     fun onEvent(
         event: AddEditNoteEvent
     ) {
@@ -83,29 +77,25 @@ class AddEditNoteViewModel @Inject constructor(
                     text = event.value
                 )
             }
-
             is AddEditNoteEvent.ChangeTitleFocus -> {
                 _noteTitle.value = noteTitle.value.copy(
                     isHintVisible = !event.focusState.isFocused &&
                             noteTitle.value.text.isBlank()
                 )
             }
-
             is AddEditNoteEvent.EnteredContent -> {
                 _noteContent.value = noteContent.value.copy(
                     text = event.value
                 )
             }
-
             is AddEditNoteEvent.ChangeContentFocus -> {
                 _noteContent.value = _noteContent.value.copy(
                     isHintVisible = !event.focusState.isFocused &&
                             _noteContent.value.text.isBlank()
                 )
             }
-
             is AddEditNoteEvent.ChangeColor -> {
-                _noteColor.value = event.color
+                _noteColor.intValue = event.color
             }
             is AddEditNoteEvent.SaveNote -> {
                 viewModelScope.launch {
@@ -133,7 +123,6 @@ class AddEditNoteViewModel @Inject constructor(
             }
         }
     }
-
     sealed class UiEvent {
         data class ShowSnackBar(val message: String) : UiEvent()
         data object SaveNote : UiEvent()
