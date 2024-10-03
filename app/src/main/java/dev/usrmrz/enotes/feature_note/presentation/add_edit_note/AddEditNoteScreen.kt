@@ -80,15 +80,11 @@ fun AddEditNoteScreen(
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
-//                modifier = Modifier
-//                    .padding(16.dp)
-//                    .shadow(
-//                        elevation = 3.dp,
-//                        shape = RoundedCornerShape(50)
-//                    ),
                 onClick = {
                     viewModel.onEvent(AddEditNoteEvent.SaveNote)
                 },
+                modifier = Modifier
+                    .padding(bottom = 64.dp),
                 shape = RoundedCornerShape(50),
                 containerColor = MaterialTheme.colorScheme.primary
             ) {
