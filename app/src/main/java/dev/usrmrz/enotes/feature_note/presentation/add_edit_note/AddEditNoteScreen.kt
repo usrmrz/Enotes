@@ -52,7 +52,7 @@ fun AddEditNoteScreen(
 ) {
     val titleState = viewModel.noteTitle.value
     val contentState = viewModel.noteContent.value
-    Log.d("Content", "title: $titleState content: $contentState $viewModel.noteContent.value")
+//    Log.d("Content", "title: $titleState content: $contentState $viewModel.noteContent.value")
     val snackbarHostState = remember { SnackbarHostState() }
     val noteBackgroundAnimatable = remember {
         Animatable(
@@ -84,7 +84,7 @@ fun AddEditNoteScreen(
                     viewModel.onEvent(AddEditNoteEvent.SaveNote)
                 },
                 modifier = Modifier
-                    .padding(bottom = 64.dp),
+                    .padding(bottom = 58.dp),
                 shape = RoundedCornerShape(50),
                 containerColor = MaterialTheme.colorScheme.primary
             ) {

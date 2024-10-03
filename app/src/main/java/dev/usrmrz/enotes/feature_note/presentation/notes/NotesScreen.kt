@@ -58,7 +58,7 @@ fun NotesScreen(
                     navController.navigate(Screen.AddEditNoteScreen.route)
                 },
                 modifier = Modifier
-                    .padding(bottom = 64.dp),
+                    .padding(bottom = 58.dp),
                 shape = RoundedCornerShape(50),
                 containerColor = MaterialTheme.colorScheme.primary
             ) {
